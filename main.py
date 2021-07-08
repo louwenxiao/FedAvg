@@ -99,19 +99,7 @@ if __name__ == "__main__":
 
     accuracy = []
     losses = []
-    # pool = Pool(3)
-    result = []
-    get_data_way = ["IID","nonIID","practical_nonIID"]
-
-    for j in range(3):
-        r = Process(target=main, args=(args.dataset,get_data_way[j],args.model,args.batch_size,
-                                        args.learning_rate,args.num_global_iters,args.local_epochs,
-                                        args.optimizer,args.global_nums,j,))
-        r.start()
-        result.append(r)
-    for j in result:
-        j.join()
-
+         
     for get_data_way in ["IID"]:
         loss,acc =main(dataset=args.dataset,
                         get_data_way=get_data_way,
@@ -131,31 +119,5 @@ if __name__ == "__main__":
             os.remove('./cache/model_state_{}.pkl'.format(i))
         os.remove('./cache/global_model_state.pkl')
         
-    sys.exit()
-    # 需要获得三个数据，本地数据集的精度，模型聚合后本地数据集的精度，聚合模型的全部数据的精度
-    import pandas as pd
-    plot_acc(accuracy)
-    plot_loss(losses)
-    list1 = [accuracy[0][0],accuracy[0][1],accuracy[1][0],accuracy[1][1],accuracy[2][0],accuracy[2][1]]
-    a = [[0 for i in range(len(list1))] for j in range(len(list1[0]))]
-    for x in range(len(list1)):
-        for y in range(len(list1[0])):
-            a[y][x] = list1[x][y]
 
-    list2 = [losses[0],losses[1],losses[2]]
-    b = [[0 for i in range(len(list2))] for j in range(len(list2[0]))]
-    for x in range(len(list2)):
-        for y in range(len(list2[0])):
-            b[y][x] = list2[x][y]
-
-    columns = ["IID","NonIID","pNonIID"]
-    dt = pd.DataFrame(b, columns=columns)
-    dt.to_excel("./data2/loss_xlsx.xlsx", index=0)
-    dt.to_csv("./data2/loss_csv.csv", index=0)
-
-    columns = ["IID_(PM)","IID_(GM)","NonIID_(PM)","NonIID_(GM)","pNonIID_(PM)","pNonIID_(GM)"]
-    dt = pd.DataFrame(a, columns=columns)
-    dt.to_excel("./data2/acc_xlsx.xlsx", index=0)
-    dt.to_csv("./data2/acc_csv.csv", index=0)
-
-
+    
