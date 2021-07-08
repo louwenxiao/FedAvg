@@ -8,7 +8,8 @@
 ## 包含文件
 
   本项目包含7个Python文件，每个文件的功能详述如下
-  2.1 clients文件
+  ### 2.1 clients文件
+  
     本文件只有一个client类，他的主要功能是定义一个“用户”。每个用户都是独立的个体，他们都有自己的模型和数据。
     这个类有三个函数，get_global_model 、 local_train 和 test_model 三个函数。
     
@@ -17,7 +18,8 @@
     test_model函数：用户利用自己模型进行测试，返回两个值：损失和精度
     
     
-  2.2 datasets文件：
+  ### 2.2 datasets文件：
+  
     本文件定义一个download_data类，下载数据并且以我们想要的方法产生数据。
     包含5个函数，__load_dataset、get_IID_data、get_nonIID_data、get_practical_nonIID_data和get_data函数。
     
@@ -28,7 +30,8 @@
     
     get_data函数：这个函数是用于外部调用的，上述四个函数并不对外调用。根据输入的数据，产生相应的数据集，输入的数据只能是三个字符串中的一个。
     
-  2.3 main函数：
+  ### 2.3 main函数：
+  
     main函数是整个程序的逻辑。首先第一步是数据集的名字使用download_data函数下载数据集，产生一个data_loader的变量，用于产生数据，然后根据数据集的名字和模型的种类产生初始模型。使用模型和数据集产生一个云模型和global_nums个用户，并放在用户集合clients中。
     
     
