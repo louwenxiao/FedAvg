@@ -48,4 +48,7 @@
    这个文件定义了一个server类，主要功能是提取每一个用户的模型，然后FedAvg，并且测试聚合模型的准确率。返回。直接调用这个类的，aggregate_model函数，就可以了。
   
  
+ ## 20220510更新
+ 
+ 这个是好久之前写的啦，代码比较low，可以去看Federated-Learning-with-Model-quantization中FedAvg算法，效率更高
     
